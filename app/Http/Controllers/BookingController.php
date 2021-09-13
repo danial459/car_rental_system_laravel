@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Car;
 use App\Rules\OverlapBookCheck;
+use App\Rules\ValidateBookDate;
 use \DateTime;
 use Carbon\Carbon;
 use App\CalcPrice;
@@ -25,14 +26,19 @@ class BookingController extends Controller
 
 
         $request->validate([
-            'start_date' => ['required','required_with_all:end_time'],
-            'start_time' => ['required','required_with_all:end_time'],
-            'end_date' => ['required','required_with_all:end_time'],
-            'end_time'=> ['bail','required','required_with_all:end_date',new OverlapBookCheck(request('start_date'),request('start_time'),request('end_date'))],
+            'start_date' => ['required'],
+            'start_time' => ['required'],
+            'end_date' => ['required'],
+            'end_time'=> ['required',new OverlapBookCheck(request('start_date'),request('start_time'),request('end_date'),request('no_plate')),
+                                     new ValidateBookDate(request('start_date'),request('start_time'),request('end_date'))],
+            'no_plate' => ['required'],
+            'pick_up' => ['required'],
+             ],[
 
+            'no_plate.required' => 'Please choose a car',
+            'pick_up.required' => 'Please choose a place to pick up a car'
 
-
-        ]);
+             ]);
 
 
 

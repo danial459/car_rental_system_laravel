@@ -51,6 +51,11 @@
                                     </div>
                                 </div>
                                 <div id="input-grp-double" class="form-row mt-4">
+                                    <div class="form-group col-12 col-sm-6">
+                                        <label class="label-control">Pick up place</label>
+                                    </div>
+                                </div>
+                                <div id="input-grp-double" class="form-row">
                                     <div class="form-group col-12 col-sm-6 form-check form-check-radio">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="pick_up" id="pickup1" value="center" >
