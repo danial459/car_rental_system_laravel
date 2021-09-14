@@ -70,7 +70,7 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input type="email" name="email" class="form-control" placeholder="Email...">
+                  <input type="email" name="email" class="form-control" placeholder="Email..." value="a@a.com">
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -78,7 +78,7 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" name="password" class="form-control" placeholder="Password...">
+                  <input type="password" name="password" class="form-control" placeholder="Password..." value="aaaaaaaa">
                 </div>
                 <div class="d-flex justify-content-center"><button type="submit" class="ml-3 mt-5 btn btn-rose btn-round">Log in</button></div>
               </div>

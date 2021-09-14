@@ -69,7 +69,7 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input type="email" name='email' class="form-control" placeholder="Email...">
+                  <input type="email" name='email' class="form-control" placeholder="Email..." value="a@a.com">
                   @error('email')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" name='password' class="form-control" placeholder="Password...">
+                  <input type="password" name='password' class="form-control" placeholder="Password..." value="aaaaaaaa">
                   @error('password')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
