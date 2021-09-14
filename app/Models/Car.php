@@ -24,6 +24,13 @@ class Car extends Model
         return $this;
     }
 
+    public function changeBookActive()
+    {
+        $this->pivot->active = 0;
+        $this->pivot->save();
+        return $this;
+    }
+
     public function users(){
 
         return $this->belongsToMany(User::class,'booking','no_plate','name')

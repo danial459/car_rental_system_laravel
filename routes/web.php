@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Models\Car;
+use App\Models\User;
+use App\Models\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
