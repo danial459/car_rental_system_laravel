@@ -34,7 +34,7 @@ class Car extends Model
     public function users(){
 
         return $this->belongsToMany(User::class,'booking','no_plate','name')
-                    ->withPivot(['id','start_date','start_time','end_time','end_date','pick_up','note','price'])
+                    ->withPivot(['id','start_date','start_time','end_time','end_date','pick_up','note','price','active'])
                     ->withTimestamps();
 
     }

@@ -48,7 +48,7 @@
           <div class="card card-login">
             <form class="form" method="POST" action="{{ route('admin.check') }}">
                 @csrf
-              <div class="card-header card-header-primary text-center">
+              <div class="card-header card-header-rose text-center">
                 <h4 class="card-title">Login</h4>
                 <div class="social-line">
                   <a href="#pablo" class="btn btn-just-icon btn-link">
@@ -80,7 +80,7 @@
                   </div>
                   <input type="password" name="password" class="form-control" placeholder="Password...">
                 </div>
-                <div class="d-flex justify-content-center"><button type="submit" class="ml-3 mt-5 btn btn-primary btn-round">Log in</button></div>
+                <div class="d-flex justify-content-center"><button type="submit" class="ml-3 mt-5 btn btn-rose btn-round">Log in</button></div>
               </div>
             </form>
           </div>

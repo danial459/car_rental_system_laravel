@@ -44,24 +44,17 @@
     @if(Auth::guard('web')->check())
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="{{route('user.home')}}">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          </button>
+            <div class="mx-2"><a class="navbar-brand" href="{{route('user.home')}}">Car Rental Service</a></div>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{route('user.booking.create.detail')}}">Book Car <span class="sr-only">(current)</span></a>
+              <div class="mx-2"><li class="nav-item {{Request::path()=== 'user/booking/create/detail' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('user.booking.create.detail')}}">Book Car<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Features</a>
+              </div>
+              <div class="mx-2"><li class="nav-item {{Request::path()=== 'user/cars' ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('user.cars')}}">Cars<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">Pricing</a>
-              </li>
+              </div>
             </ul>
             <ul class="navbar-nav form-inline ml-auto">
               <li class="nav-item dropdown ">

@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{$myBook->pivot->id}}</td>
                     <td>{{$myBook->no_plate}}</td>
-                    <td><img src='{{ asset('/images/'.$myBook->link.'.jpg') }}' alt="car"></td>
+                    <td><img src='{{asset($myBook->link)}}' class="img-fluid img-thumbnail" style="max-height:200px; max-width:300px; overflow: hidden" alt="car"></td>
                     <td>{{$myBook->car_name}}</td>
                     <td>{{$myBook->pivot->price}}</td>
                     <td>{{$myBook->pivot->start_date." at ".$myBook->pivot->start_time}}</td>

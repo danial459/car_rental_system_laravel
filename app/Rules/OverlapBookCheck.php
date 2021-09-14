@@ -38,8 +38,8 @@ class OverlapBookCheck implements Rule
             return back();
         }
 
-        $id1 = $this->date1.$this->time1;
-        $id2 = $this->date2.$time2;
+        $id1 = $this->date1.substr($this->time1,0,5);
+        $id2 = $this->date2.substr($time2,0,5);
 
         $id1 = Carbon::createFromFormat('Y-m-dH:i', $id1);
         $id1 = Carbon::parse($id1);
@@ -85,6 +85,6 @@ class OverlapBookCheck implements Rule
      */
     public function message()
     {
-        return 'The date is overlaps with other user.';
+        return 'The date is overlaps with other booking.';
     }
 }

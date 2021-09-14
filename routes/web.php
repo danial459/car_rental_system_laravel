@@ -41,6 +41,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
          Route::get('/home',[HomeController::class,'index'])->name('home');
          Route::get('/booking',[BookingController::class,'show'])->name('myBooking');
+         Route::get('/cars',[HomeController::class,'showAllCars'])->name('cars');
 
          Route::prefix('booking/create')->name('booking.create.')->group(function(){
 
