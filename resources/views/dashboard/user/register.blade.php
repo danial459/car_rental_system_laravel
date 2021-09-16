@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="page-header header-filter" style="background-image: url({{asset('img/bg7.jpg')}}); background-size: cover; background-position: top center;">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -42,7 +44,7 @@
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
                             <div class="col-md-6">
-                                <textarea type="text" class="form-control form-control-lg" style="font-size: 0.875em" name="address" > </textarea>
+                                <textarea type="text" class="form-control form-control-lg" style="font-size: 0.875em" name="address" >{{ old('address') }}</textarea>
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -113,5 +115,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
