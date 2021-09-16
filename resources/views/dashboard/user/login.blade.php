@@ -91,6 +91,9 @@
                 </div>
                 <div class="d-flex justify-content-center"><button type="submit" class="ml-3 mt-5 btn btn-primary btn-round">Log in</button></div>
               </div>
+              @if (Route::has('register'))
+              <div class="text-center"><a href="{{ route('register') }}" class="description">You're new? Register here</a></div>
+          @endif
             </form>
           </div>
         </div>

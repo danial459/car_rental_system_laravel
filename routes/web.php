@@ -34,6 +34,7 @@ Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:admin','guest','PreventBackHistory'])->group(function(){
 
          Route::view('/login','dashboard.user.login')->name('login');
+         Route::view('/register','dashboard.user.login')->name('login');
 
     });
 
