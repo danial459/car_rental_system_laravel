@@ -5,7 +5,7 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+        <a class="navbar-brand" href="{{route("user.login")}}">
           Car Rental System </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
@@ -81,7 +81,9 @@
                   <input type="password" name="password" class="form-control" placeholder="Password..." value="aaaaaaaa">
                 </div>
                 <div class="d-flex justify-content-center"><button type="submit" class="ml-3 mt-5 btn btn-rose btn-round">Log in</button></div>
+
               </div>
+              <div class="text-center"><a href="{{ route('admin.register') }}" class="description">Register new admin</a></div>
             </form>
           </div>
         </div>

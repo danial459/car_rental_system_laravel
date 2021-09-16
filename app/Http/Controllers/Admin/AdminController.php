@@ -10,9 +10,33 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+
+    function registration(Request $request){
+
+        $new_admin = $request->all();
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        Admin::create([
+            'name' => $new_admin['name'],
+            'email' => $new_admin['email'],
+            'password' => Hash::make($new_admin['password']),
+
+        ]);
+
+        return redirect()->route('admin.login');
+
+    }
+
     function check(Request $request){
         //Validate Inputs
         $request->validate([

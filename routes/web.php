@@ -34,7 +34,6 @@ Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:admin','guest','PreventBackHistory'])->group(function(){
 
          Route::view('/login','dashboard.user.login')->name('login');
-         Route::view('/register','dashboard.user.login')->name('login');
 
     });
 
@@ -70,6 +69,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['guest:admin','guest','PreventBackHistory'])->group(function(){
         Route::view('/login','dashboard.admin.login')->name('login');
+        Route::view('/register','dashboard.admin.register')->name('register');
+        Route::post('/register',[AdminController::class,'registration'])->name('register.confirm');
         Route::post('/check',[AdminController::class,'check'])->name('check');
 
     });
