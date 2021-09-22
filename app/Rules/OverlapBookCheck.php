@@ -8,18 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class OverlapBookCheck implements Rule
 {
-    protected $date1,$time1,$date2,$no_plate;
+    protected $date1,$time1,$date2,$no_plate,$booking_id;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($date1,$time1,$date2,$no_plate)
+    public function __construct($date1,$time1,$date2,$no_plate,$booking_id)
     {
         $this->date1 = $date1;
         $this->time1 = $time1;
         $this->date2 = $date2;
         $this->no_plate = $no_plate;
+        $this->booking_id = $booking_id;
     }
 
     /**
@@ -31,7 +32,7 @@ class OverlapBookCheck implements Rule
      */
     public function passes($attribute, $value)
     {
-        $cek = true;
+
         $time2 = $value;
 
         if ( !$this->date1 or !$this->time1 or !$this->date2 ) {
@@ -47,9 +48,24 @@ class OverlapBookCheck implements Rule
         $id2 = Carbon::createFromFormat('Y-m-dH:i', $id2);
         $id2 = Carbon::parse($id2);
 
-        $cars = DB::table('booking')
-                ->where('no_plate', '=', $this->no_plate)
-                ->get();
+        if($this->booking_id){
+
+            $cars = DB::table('booking')
+                    ->where('no_plate', '=', $this->no_plate)
+                    ->whereNotIn('id', [$this->booking_id])
+                    ->where('active', 1)
+                    ->get();
+
+        }
+
+        else{
+
+            $cars = DB::table('booking')
+                    ->where('no_plate', '=', $this->no_plate)
+                    ->where('active', 1)
+                    ->get();
+
+        }
 
         foreach($cars as $car){
 

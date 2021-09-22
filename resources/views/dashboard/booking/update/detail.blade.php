@@ -120,6 +120,7 @@
             </div>
         </div>
          <input type="hidden" name="action" value="2">
+         <input type="hidden" name="booking_id" value="{{$myBook->pivot->id}}">
         <div class="d-flex justify-content-center"><button id="button" name="button" class="btn btn-primary mt-5" type="submit">Next</button></div>
         </div>
 

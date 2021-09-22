@@ -24,12 +24,11 @@ class BookingController extends Controller
 
     public function confirmation(Request $request){
 
-
         $request->validate([
             'start_date' => ['required'],
             'start_time' => ['required'],
             'end_date' => ['required'],
-            'end_time'=> ['required',new OverlapBookCheck(request('start_date'),request('start_time'),request('end_date'),request('no_plate')),
+            'end_time'=> ['required',new OverlapBookCheck(request('start_date'),request('start_time'),request('end_date'),request('no_plate'),request('booking_id')),
                                      new ValidateBookDate(request('start_date'),request('start_time'),request('end_date'))],
             'no_plate' => ['required'],
             'pick_up' => ['required'],
@@ -40,10 +39,6 @@ class BookingController extends Controller
 
              ]);
 
-
-
-        //dd($request->all());
-
         session(['start_date' => request('start_date')]);
         session(['end_date' => request('end_date')]);
         session(['start_time' => request('start_time')]);
@@ -51,9 +46,6 @@ class BookingController extends Controller
         session(['pick_up' => request('pick_up')]);
         session(['note' => request('note')]);
         session(['no_plate' => request('no_plate')]);
-
-        //dd(session()->all());
-
 
         $price = new CalcPrice( session('start_date'),session('start_time'),session('end_date'),session('end_time'),request('no_plate'),request('action'));
 
