@@ -2,6 +2,24 @@
 
 @section('content')
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <div class="container">
+        <div class="alert-icon">
+            <i class="material-icons">warning</i>
+        </div>
+       Warning Alert:
+        <div class="mt-3">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+         </div>
+    </div>
+</div>
+@endif
+
 <form action="{{route('admin.book.edit.confirmation',session('bookId') )}}" method="GET">
     @csrf
         <div id="multple-step-form-n" class="container overflow-hidden" style="margin-top: 0px;margin-bottom: 10px;padding-bottom: 30px;padding-top: 57px;">

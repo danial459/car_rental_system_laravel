@@ -26,6 +26,9 @@ Auth::routes();
 
 Route::get('/', function () {return view('dashboard.user.login');})->middleware(['guest:admin','guest:web','PreventBackHistory']);
 
+// Route::get('/', function () {
+//     ;});
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['PreventBackHistory']);
 
 
@@ -104,11 +107,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         Route::prefix('car')->name('car.')->group(function(){
 
-            Route::get('/all',[CarController::class, 'index'])->name('all');
-            Route::get('/plateno/{no_plate}',[CarController::class, 'show'])->name('plateNo.show');
-            Route::get('/add',[CarController::class, 'add'])->name('add');
-            Route::post('/save',[CarController::class, 'save'])->name('save');
-            Route::get('/underservice/',[CarController::class, 'change_underservice'])->name('underService');
+             Route::get('/all',[CarController::class, 'index'])->name('all');
+             Route::get('/plateno/{no_plate}',[CarController::class, 'show'])->name('plateNo.show');
+             Route::get('/add',[CarController::class, 'add'])->name('add');
+             Route::post('/save',[CarController::class, 'save'])->name('save');
+             Route::get('/underservice/',[CarController::class, 'change_underservice'])->name('underService');
 
 
        });

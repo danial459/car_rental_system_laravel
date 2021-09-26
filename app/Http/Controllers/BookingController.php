@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Car;
 use App\Rules\OverlapBookCheck;
 use App\Rules\ValidateBookDate;
-use \DateTime;
-use Carbon\Carbon;
 use App\CalcPrice;
 use Auth;
 
@@ -55,17 +53,13 @@ class BookingController extends Controller
 
         if(request('action') == 1){
 
-
             return view('dashboard.booking.create.confirmation',[ 'car' => Car::find(request('no_plate'))]);
          }
 
          else{
 
-             return view('dashboard.booking.update.confirmation',[ 'car' => Car::find(request('no_plate'))]);
+            return view('dashboard.booking.update.confirmation',[ 'car' => Car::find(request('no_plate'))]);
          }
-
-
-
 
     }
 
@@ -83,7 +77,7 @@ class BookingController extends Controller
                                                           'note' => session('note'),
                                                           'price' => session('price')]);
 
-         $request->session()->forget(['start_date', 'end_date', 'start_time', 'end_time', 'pick_up', 'note', 'price', 'book_id', 'no_plate']);
+        $request->session()->forget(['start_date', 'end_date', 'start_time', 'end_time', 'pick_up', 'note', 'price', 'book_id', 'no_plate']);
 
         return redirect()->route('user.home')->with('success','You have just booked a car');
 
@@ -130,11 +124,9 @@ class BookingController extends Controller
 
     public function destroy(Request $request){
 
-        //dd($request->all());
-
         $book_id_delete = request('book_delete');
 
-         DB::table('booking')->where('id',$book_id_delete)->delete();
+        DB::table('booking')->where('id',$book_id_delete)->delete();
 
         return redirect(route("user.myBooking"));
     }

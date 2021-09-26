@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CalcPrice;
 use App\Models\Car;
-use App\Models\User;
+use App\Rules\OverlapBookCheck;
+use App\Rules\ValidateBookDate;
 
 class BookController extends Controller
 {
@@ -42,7 +43,22 @@ class BookController extends Controller
 
     }
 
-    public function confirmBook(){
+    public function confirmBook(Request $request){
+
+        $request->validate([
+            'start_date' => ['required'],
+            'start_time' => ['required'],
+            'end_date' => ['required'],
+            'end_time'=> ['required',new OverlapBookCheck(request('start_date'),request('start_time'),request('end_date'),request('no_plate'),request('booking_id')),
+                                     new ValidateBookDate(request('start_date'),request('start_time'),request('end_date'))],
+            'no_plate' => ['required'],
+            'pick_up' => ['required'],
+             ],[
+
+            'no_plate.required' => 'Please choose a car',
+            'pick_up.required' => 'Please choose a place to pick up a car'
+
+             ]);
 
         session(['start_date' => request('start_date')]);
         session(['end_date' => request('end_date')]);

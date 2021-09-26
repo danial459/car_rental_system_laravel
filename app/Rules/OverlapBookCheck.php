@@ -39,14 +39,14 @@ class OverlapBookCheck implements Rule
             return back();
         }
 
-        $id1 = $this->date1.substr($this->time1,0,5);
-        $id2 = $this->date2.substr($time2,0,5);
+        $input_start_date = $this->date1.substr($this->time1,0,5);
+        $input_end_date = $this->date2.substr($time2,0,5);
 
-        $id1 = Carbon::createFromFormat('Y-m-dH:i', $id1);
-        $id1 = Carbon::parse($id1);
+        $input_start_date = Carbon::createFromFormat('Y-m-dH:i', $input_start_date);
+        $input_start_date = Carbon::parse($input_start_date);
 
-        $id2 = Carbon::createFromFormat('Y-m-dH:i', $id2);
-        $id2 = Carbon::parse($id2);
+        $input_end_date = Carbon::createFromFormat('Y-m-dH:i', $input_end_date);
+        $input_end_date = Carbon::parse($input_end_date);
 
         if($this->booking_id){
 
@@ -57,7 +57,6 @@ class OverlapBookCheck implements Rule
                     ->get();
 
         }
-
         else{
 
             $cars = DB::table('booking')
@@ -73,24 +72,22 @@ class OverlapBookCheck implements Rule
           $date2 = $car->end_date.$car->end_time;
 
           $date1 = Carbon::createFromFormat('Y-m-dH:i:s', $date1);
-          $od1 = Carbon::parse($date1);
+          $booking_start_date = Carbon::parse($date1);
 
           $date2 = Carbon::createFromFormat('Y-m-dH:i:s', $date2);
-          $od2 = Carbon::parse($date2);
+          $booking_end_date = Carbon::parse($date2);
 
-          if( !(($id1->isBefore($od1) && $id2->isBefore($od1) && $id1->isBefore($od2) && $id2->isBefore($od2))  ||
-              ($id1->isAfter($od1) && $id2->isAfter($od1) && $id1->isAfter($od2) && $id2->isAfter($od2))) ){
+          if( !(($input_start_date->isBefore($booking_start_date) && $input_end_date->isBefore($booking_start_date) && $input_start_date->isBefore($booking_end_date) && $input_end_date->isBefore($booking_end_date))  ||
+              ($input_start_date->isAfter($booking_start_date) && $input_end_date->isAfter($booking_start_date) && $input_start_date->isAfter($booking_end_date) && $input_end_date->isAfter($booking_end_date))) ){
 
                 return false;
-
              }
-
         }
 
         return true;
 
-        // $od1 = Carbon::create(2021, 9, 9, 14, 15);
-        // $od2 = Carbon::create(2021, 9, 12, 20, 15);
+        // $booking_start_date = Carbon::create(2021, 9, 9, 14, 15);
+        // $booking_end_date = Carbon::create(2021, 9, 12, 20, 15);
 
     }
 

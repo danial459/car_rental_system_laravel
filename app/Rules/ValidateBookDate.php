@@ -34,22 +34,20 @@ class ValidateBookDate implements Rule
         $now = Carbon::now();
 
         if ( !$this->date1 or !$this->time1 or !$this->date2 ) {
-
             return back();
        }
 
 
-        $id1 = $this->date1.substr($this->time1,0,5);
-        $id2 = $this->date2.substr($time2,0,5);
+        $input_start_date = $this->date1.substr($this->time1,0,5);
+        $input_end_date = $this->date2.substr($time2,0,5);
 
-        $id1 = Carbon::createFromFormat('Y-m-dH:i', $id1);
-        $id1 = Carbon::parse($id1);
+        $input_start_date = Carbon::createFromFormat('Y-m-dH:i', $input_start_date);
+        $input_start_date = Carbon::parse($input_start_date);
 
-        $id2 = Carbon::createFromFormat('Y-m-dH:i', $id2);
-        $id2 = Carbon::parse($id2);
+        $input_end_date = Carbon::createFromFormat('Y-m-dH:i', $input_end_date);
+        $input_end_date = Carbon::parse($input_end_date);
 
-        return ($id1->isAfter($now) and $id2->isAfter($now) and $id1->isBefore($id2) and $id2->isAfter($id1));
-
+        return ($input_start_date->isAfter($now) and $input_end_date->isAfter($now) and $input_start_date->isBefore($input_end_date) and $input_end_date->isAfter($input_start_date));
     }
 
     /**

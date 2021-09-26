@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Car;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -38,7 +36,7 @@ class AdminController extends Controller
     }
 
     function check(Request $request){
-        //Validate Inputs
+
         $request->validate([
            'email'=>'required|email|exists:admins,email',
            'password'=>'required|min:5|max:30'
@@ -49,9 +47,13 @@ class AdminController extends Controller
         $creds = $request->only('email','password');
 
         if( Auth::guard('admin')->attempt($creds) ){
+
             return redirect()->route('admin.home');
+
         }else{
+
             return redirect()->route('admin.login')->with('fail','Incorrect credentials');
+
         }
     }
 
