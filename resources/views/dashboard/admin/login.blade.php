@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('login')}}" >
+                <a class="nav-link" href="{{route('user.login')}}" >
                   <i class="material-icons">login</i> Login as customer
                 </a>
               </li>
